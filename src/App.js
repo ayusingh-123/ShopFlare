@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Header from "./components/Header/Header";
+import NewsBanner from "./components/Footer/NewBanner/NewsBanner";
+import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import Detailprod from "./components/Products/Display/Detailprod";
+import data from "./assets/data.json";
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route
+          path="/product/:id"
+          element={<Detailprod data={data} />} // Pass the data as a prop
+        />
+      {/* <Route path="/category/:id" element={<Category/>} />
+      <Route path="/product/:id" element={<Product/>} /> */}
+    </Routes>
+    <NewsBanner/>
+    <Footer/>
+    </BrowserRouter>
   );
 }
 
